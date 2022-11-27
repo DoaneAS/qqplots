@@ -6,7 +6,7 @@ output: html_document
 ---
 ## QQ-Plots
 
-To produce a pdf file with a qq plot showing BTG1, clone this repository, ensure the required packaged are installed, and run `R CMD BATCH makeQQplot.R`.  To execute code interactively, use the qqPLot.qmd in RStudio.
+To produce a pdf file with a qq plot showing BTG1, clone this repository, ensure the required packaged are installed, and run `R CMD BATCH makeQQplot.R`.  To execute code interactively, follow tutorial below.
 
 ### Code
 Here we will generate a quantile-quantile plot of observed p-values and p-values computed from a uniform distribution.
