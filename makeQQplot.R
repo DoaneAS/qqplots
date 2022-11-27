@@ -19,9 +19,11 @@
 
 require(data.table)
 require(fishHook)
+require(data.table)
+require(fishHook)
+require(cowplot)
 
-result.df <- fread("./fishHook.results.tsv")
-result.df
+
 
 
 require(cowplot)
@@ -82,11 +84,20 @@ ggqq <- function(ps, symbol, ci = 0.95, splitx=3.5, pcolor) {
 }
 
 
-result.df$plotSymbol <- ""
-result.df$plotSymbol[1:20] <- result.df$name[1:20]
-result.df[, plotcolor := ifelse(fdr<=0.001, name, "")]     
 
-p = ggqq(result.df$p, symbol = result.df$plotSymbol, pcolor = result.df$plotcolor)
+plotQQ <- function(result.df) {
+  result.df$plotSymbol <- ""
+  result.df$plotSymbol[1:20] <- result.df$name[1:20]
+  result.df[, plotcolor := ifelse(fdr<=0.001, name, "")]     
+  p = ggqq(result.df$p, symbol = result.df$plotSymbol, pcolor = result.df$plotcolor)
+  save_plot("qqPlot.pdf", p)
+  return(p)
+}
 
+result.df <- fread("./fishHook.results.tsv")
+result.df
 
-save_plot("qqPlot.pdf", p)
+pp = plotQQ(result.df)
+
+##save another
+## save_plot("qqPlot2.pdf", pp)
